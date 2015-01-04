@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC8546FF1A440A8400656164 /* PopupActivityItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8546FE1A440A8400656164 /* PopupActivityItem.m */; };
+		AC8547021A441C6800656164 /* CustomizeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8547011A441C6800656164 /* CustomizeItem.m */; };
 		ACBA2D101A41A48D009AF36A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBA2D0F1A41A48D009AF36A /* main.m */; };
 		ACBA2D131A41A48D009AF36A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBA2D121A41A48D009AF36A /* AppDelegate.m */; };
 		ACBA2D161A41A48D009AF36A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBA2D151A41A48D009AF36A /* ViewController.m */; };
@@ -14,6 +16,7 @@
 		ACBA2D1B1A41A48D009AF36A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACBA2D1A1A41A48D009AF36A /* Images.xcassets */; };
 		ACBA2D1E1A41A48D009AF36A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACBA2D1C1A41A48D009AF36A /* LaunchScreen.xib */; };
 		ACBA2D2A1A41A48D009AF36A /* PopupActivityViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBA2D291A41A48D009AF36A /* PopupActivityViewTests.m */; };
+		ACBA2D361A41A4D7009AF36A /* PopupActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBA2D351A41A4D7009AF36A /* PopupActivityView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +30,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC8546FD1A440A8400656164 /* PopupActivityItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupActivityItem.h; sourceTree = "<group>"; };
+		AC8546FE1A440A8400656164 /* PopupActivityItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupActivityItem.m; sourceTree = "<group>"; };
+		AC8547001A441C6800656164 /* CustomizeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizeItem.h; sourceTree = "<group>"; };
+		AC8547011A441C6800656164 /* CustomizeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizeItem.m; sourceTree = "<group>"; };
 		ACBA2D0A1A41A48D009AF36A /* PopupActivityView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopupActivityView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACBA2D0E1A41A48D009AF36A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACBA2D0F1A41A48D009AF36A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +47,8 @@
 		ACBA2D231A41A48D009AF36A /* PopupActivityViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PopupActivityViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACBA2D281A41A48D009AF36A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACBA2D291A41A48D009AF36A /* PopupActivityViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PopupActivityViewTests.m; sourceTree = "<group>"; };
+		ACBA2D341A41A4D7009AF36A /* PopupActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupActivityView.h; sourceTree = "<group>"; };
+		ACBA2D351A41A4D7009AF36A /* PopupActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupActivityView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +90,7 @@
 		ACBA2D0C1A41A48D009AF36A /* PopupActivityView */ = {
 			isa = PBXGroup;
 			children = (
+				ACBA2D331A41A4BF009AF36A /* PopActivityView */,
 				ACBA2D111A41A48D009AF36A /* AppDelegate.h */,
 				ACBA2D121A41A48D009AF36A /* AppDelegate.m */,
 				ACBA2D141A41A48D009AF36A /* ViewController.h */,
@@ -89,6 +99,8 @@
 				ACBA2D1A1A41A48D009AF36A /* Images.xcassets */,
 				ACBA2D1C1A41A48D009AF36A /* LaunchScreen.xib */,
 				ACBA2D0D1A41A48D009AF36A /* Supporting Files */,
+				AC8547001A441C6800656164 /* CustomizeItem.h */,
+				AC8547011A441C6800656164 /* CustomizeItem.m */,
 			);
 			path = PopupActivityView;
 			sourceTree = "<group>";
@@ -117,6 +129,17 @@
 				ACBA2D281A41A48D009AF36A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ACBA2D331A41A4BF009AF36A /* PopActivityView */ = {
+			isa = PBXGroup;
+			children = (
+				ACBA2D341A41A4D7009AF36A /* PopupActivityView.h */,
+				ACBA2D351A41A4D7009AF36A /* PopupActivityView.m */,
+				AC8546FD1A440A8400656164 /* PopupActivityItem.h */,
+				AC8546FE1A440A8400656164 /* PopupActivityItem.m */,
+			);
+			path = PopActivityView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,8 +242,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC8546FF1A440A8400656164 /* PopupActivityItem.m in Sources */,
 				ACBA2D161A41A48D009AF36A /* ViewController.m in Sources */,
+				AC8547021A441C6800656164 /* CustomizeItem.m in Sources */,
 				ACBA2D131A41A48D009AF36A /* AppDelegate.m in Sources */,
+				ACBA2D361A41A4D7009AF36A /* PopupActivityView.m in Sources */,
 				ACBA2D101A41A48D009AF36A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +438,7 @@
 				ACBA2D2F1A41A48D009AF36A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ACBA2D301A41A48D009AF36A /* Build configuration list for PBXNativeTarget "PopupActivityViewTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +447,7 @@
 				ACBA2D321A41A48D009AF36A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
