@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PopupActivityView/PopActivityView/PopupActivityView.m"
-            timestampString = "442071114.389955"
+            filePath = "PopupActivityView/ViewController.m"
+            timestampString = "442415270.734727"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "-popSystemAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

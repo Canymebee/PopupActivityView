@@ -10,8 +10,8 @@
 
 @interface PopupActivityView : UIView <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
-- (instancetype)initWithSharingItems:(NSArray *)sharingItems actionItems:(NSArray *)actionItems enableAirDrop:(BOOL)isWithAirDrop;
-- (void)popIn:(UIViewController *)viewController;
+- (instancetype)initWithSharingItems:(NSArray *)sharingItems actionItems:(NSArray *)actionItems;
+- (void)popIn;
 - (void)hide;
 
 @end

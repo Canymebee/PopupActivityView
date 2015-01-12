@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "PopupActivityView.h"
 #import "CustomizeItem.h"
+#import "MyActivity.h"
 
 @interface ViewController ()
 
@@ -33,27 +34,39 @@
     CustomizeItem * item2 = [[CustomizeItem alloc] initWithTitle:@"Email" icon:[UIImage imageNamed:@"shareicon_02"]];
     CustomizeItem * item3 = [[CustomizeItem alloc] initWithTitle:@"Timeline" icon:[UIImage imageNamed:@"shareicon_03"]];
     CustomizeItem * item4 = [[CustomizeItem alloc] initWithTitle:@"Weibo" icon:[UIImage imageNamed:@"shareicon_04"]];
-    CustomizeItem * item5 = [[CustomizeItem alloc] initWithTitle:@"Wechat" icon:[UIImage imageNamed:@"shareicon_05"]];
+    CustomizeItem * item5 = [[CustomizeItem alloc] initWithTitle:@"Wechat" icon:[UIImage imageNamed:@"qq_image"]];
     
-    PopupActivityView * popView = [[PopupActivityView alloc] initWithSharingItems:@[item1, item2, item3, item4, item5] actionItems:@[] enableAirDrop:NO];
-    [popView popIn:self];
+    PopupActivityView * popView = [[PopupActivityView alloc] initWithSharingItems:@[item1, item2, item3, item4, item5] actionItems:nil];
+    [popView popIn];
+}
+
+- (IBAction)popSystemAction:(id)sender {
+    MyActivity * ac1 = [[MyActivity alloc] init];
+    MyActivity * ac2 = [[MyActivity alloc] init];
+    MyActivity * ac3 = [[MyActivity alloc] init];
+    MyActivity * ac4 = [[MyActivity alloc] init];
+    MyActivity * ac5 = [[MyActivity alloc] init];
+    UIActivityViewController * vc = [[UIActivityViewController alloc] initWithActivityItems:@[@"balabala"] applicationActivities:@[ac1,ac2,ac3,ac4,ac5]];
     
-//    UIViewController * vc = [[UIViewController alloc] init];
-//    vc.view.backgroundColor = [UIColor blackColor];
-//    vc.view.alpha = 0.3;
-//    
-//    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-//    view.backgroundColor = [UIColor blueColor];
-//    [vc.view addSubview:view];
-//    
-//    [self presentViewController:vc animated:YES completion:^{
-//        vc.view.alpha = 0.3;
-//    }];
-    
-//    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    self.window.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
-//    self.window.windowLevel = UIWindowLevelNormal;
-//    [self.window makeKeyAndVisible];
+    [self presentViewController:vc animated:YES completion:^{
+        NSMutableArray * queue = [[NSMutableArray alloc] init];
+        [queue addObject:[vc.view subviews][0]];
+        while (queue.count) {
+            UIView * view = [queue firstObject];
+            [queue removeObjectAtIndex:0];
+            for (UIView * v in [view subviews]) {
+                NSLog(@"%@", v);
+                if ([v isKindOfClass:[UILabel class]]) {
+                    NSLog(@"================================ Font : %@\n %@", ((UILabel *)v).font, ((UILabel *)v).textColor);
+                }
+                if (v.frame.size.height == 1) {
+                    NSLog(@">>>>>>>>>>> Color : %@", v.backgroundColor);
+                }
+                [queue addObject:v];
+            }
+        }
+        NSLog(@"%@", [UIScreen mainScreen].bounds);
+    }];
     
 }
 

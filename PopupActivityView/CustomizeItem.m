@@ -30,4 +30,9 @@
     return self.image;
 }
 
+- (void)performAction
+{
+    NSLog(@"NImei a a a a a a a ");
+}
+
 @end

@@ -18,14 +18,26 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dq-jv-CHh">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Pop Mine">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="177" y="143" width="46" height="30"/>
+                                    <rect key="frame" x="163" y="143" width="74" height="30"/>
                                 </variation>
                                 <connections>
                                     <action selector="btnAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kri-mT-Z6D"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9v-4e-XHA">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Pop system">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="159" y="214" width="82" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="popSystemAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="MiZ-Gn-G1p"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -33,11 +45,13 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="5dq-jv-CHh"/>
+                                <exclude reference="v9v-4e-XHA"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="5dq-jv-CHh"/>
+                                <include reference="v9v-4e-XHA"/>
                             </mask>
                         </variation>
                     </view>

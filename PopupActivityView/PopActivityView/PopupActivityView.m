@@ -10,9 +10,13 @@
 #define SCREEN_WIDTH                [UIScreen mainScreen].bounds.size.width
 #define BUTTON_HEIGHT               44
 #define CATEGORY_HEIGHT             128
-#define ACTIVITY_WIDTH              304
+#define ACTIVITY_WIDTH              SCREEN_WIDTH - 16
 #define ITEM_WIDTH                  72
 #define ITEM_HEIGHT                 96
+#define DISPLAY_MARGIN_LEFT         8
+#define ANIMATION_DURATION          0.2
+
+#define BLUE                        [UIColor colorWithRed:0 green:0.478431 blue:1 alpha:1]
 
 
 #import "PopupActivityView.h"
@@ -21,8 +25,7 @@
 
 @interface ItemCell : UICollectionViewCell
 
-@property (nonatomic, strong) UIImageView * itemImageView;
-@property (nonatomic, strong) UILabel * itemTitle;
+@property (nonatomic, strong) UIButton * itemButton;
 
 - (void)updateCell:(PopupActivityItem *)activityItem;
 
@@ -32,18 +35,18 @@
 
 - (void)updateCell:(PopupActivityItem *)activityItem
 {
-//    CGRect frame = self.frame;
-//    frame.size = CGSizeMake(ITEM_WIDTH, ITEM_HEIGHT);
-//    self.frame = CGRectMake(0, 0, ITEM_WIDTH, ITEM_HEIGHT);
+    self.itemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 72, 96)];
+    [self.itemButton setImage:[activityItem itemImage] forState:UIControlStateNormal];
+    self.itemButton.imageEdgeInsets = UIEdgeInsetsMake(0, 5, 34, 5);
+    [self.itemButton setTitle:[activityItem itemTitle] forState:UIControlStateNormal];
+    [self.itemButton setTitleEdgeInsets:UIEdgeInsetsMake(67.5, -60, 15, 1)];
+    [self.itemButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    self.itemButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    [self.itemButton.titleLabel setFont:[UIFont systemFontOfSize:11]];
+    [self.itemButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.itemButton addTarget:activityItem action:@selector(performAction) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:self.itemButton];
     
-    self.itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 62, 62)];
-    self.itemImageView.image = [activityItem itemImage];
-    [self addSubview:self.itemImageView];
-    
-    self.itemTitle = [[UILabel alloc] initWithFrame:CGRectMake(1, 67.5, 70, 13.5)];
-    self.itemTitle.text = [activityItem itemTitle];
-    self.itemTitle.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:self.itemTitle];
 }
 
 @end
@@ -68,11 +71,11 @@
 
 @implementation PopupActivityView
 
-- (instancetype)initWithSharingItems:(NSArray *)sharingItems actionItems:(NSArray *)actionItems enableAirDrop:(BOOL)isWithAirDrop;
+- (instancetype)initWithSharingItems:(NSArray *)sharingItems actionItems:(NSArray *)actionItems
 {
     self = [super init];
     if (self) {
-        self.frame = CGRectMake(8, SCREEN_HEIGHT, 304, 0);
+        self.frame = CGRectMake(DISPLAY_MARGIN_LEFT, SCREEN_HEIGHT, ACTIVITY_WIDTH, 0);
         self.backgroundColor = [UIColor clearColor];
         
         if ((sharingItems && sharingItems.count) && (actionItems && actionItems.count)) {
@@ -88,13 +91,19 @@
         int displayHeight = CATEGORY_HEIGHT * self.expectedCategoryNum;
         self.displayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ACTIVITY_WIDTH, displayHeight)];
         self.displayView.backgroundColor = [UIColor whiteColor];
-        self.cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(0, displayHeight + 5, ACTIVITY_WIDTH, BUTTON_HEIGHT)];
+        self.displayView.layer.cornerRadius = 3;
+        self.displayView.clipsToBounds = YES;
+        
+        self.cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(0, displayHeight + DISPLAY_MARGIN_LEFT, ACTIVITY_WIDTH, BUTTON_HEIGHT)];
+        [self.cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:21]];
         [self.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
         [self.cancelButton setBackgroundColor:[UIColor whiteColor]];
-        [self.cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.cancelButton setTitleColor:BLUE forState:UIControlStateNormal];
+        self.cancelButton.layer.cornerRadius = 3;
+        self.cancelButton.clipsToBounds = YES;
         [self.cancelButton addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
         
-        self.frame = CGRectMake(10, SCREEN_HEIGHT, ACTIVITY_WIDTH, displayHeight + BUTTON_HEIGHT + 10);
+        self.frame = CGRectMake(DISPLAY_MARGIN_LEFT, SCREEN_HEIGHT, ACTIVITY_WIDTH, displayHeight + BUTTON_HEIGHT + 16);
         
         [self addSubview:self.cancelButton];
         [self addSubview:self.displayView];
@@ -103,52 +112,40 @@
         self.backgroundWindow.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
         [self.backgroundWindow addSubview:self];
         
-        
         self.collectionViews = [[NSMutableArray alloc] initWithCapacity:self.expectedCategoryNum];
         for (int i = 0; i < self.expectedCategoryNum; i ++) {
-//            UIScrollView * scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, CATEGORY_HEIGHT * i, ACTIVITY_WIDTH, CATEGORY_HEIGHT)];
-//            UIView * contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5 * ITEM_WIDTH, CATEGORY_HEIGHT)];
-//            for (int i = 0; i < self.sharingItems.count; i ++) {
-//                CustomizeItem * item = self.sharingItems[i];
-//                UIView * cellView = [[UIView alloc] initWithFrame:CGRectMake(i * ITEM_WIDTH, 0, ITEM_WIDTH, ITEM_HEIGHT)];
-//                UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ITEM_WIDTH, ITEM_WIDTH)];
-//                imageView.image = item.image;
-//                UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, ITEM_HEIGHT, ITEM_WIDTH, ITEM_HEIGHT - ITEM_WIDTH)];
-//                label.text = item.title;
-//                [cellView addSubview:imageView];
-//                [cellView addSubview:label];
-//                [contentView addSubview:cellView];
-//            }
-//            [scrollView addSubview:contentView];
-//            [scrollView setContentSize:contentView.frame.size];
-//            scrollView.showsHorizontalScrollIndicator = NO;
-//            scrollView.backgroundColor = [UIColor redColor];
-//            [self.collectionViews addObject:scrollView];
-//            [self addSubview:scrollView];
-            
             UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-            UICollectionView * collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, CATEGORY_HEIGHT * i, ACTIVITY_WIDTH, CATEGORY_HEIGHT) collectionViewLayout:layout];
+            layout.minimumInteritemSpacing = 0;
+            UICollectionView * collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(2, CATEGORY_HEIGHT * i + i, ACTIVITY_WIDTH - 4, CATEGORY_HEIGHT) collectionViewLayout:layout];
             collectionView.delegate = self;
             collectionView.dataSource = self;
             [collectionView setTag:i];
             [collectionView registerClass:[ItemCell class] forCellWithReuseIdentifier:@"CellIdentifier"];
             collectionView.contentSize = CGSizeMake(100 * self.sharingItems.count, CATEGORY_HEIGHT);
-            [self addSubview:collectionView];
+            collectionView.backgroundColor = [UIColor whiteColor];
+            collectionView.showsHorizontalScrollIndicator = NO;
+            [self.displayView addSubview:collectionView];
+            
+            UIView * dividerLine = [[UIView alloc] initWithFrame:CGRectMake(0, CATEGORY_HEIGHT * i + i - 1, ACTIVITY_WIDTH, i == 0 ? 0 : 1)];
+            dividerLine.backgroundColor = [UIColor grayColor];
+            [self.displayView addSubview:dividerLine];
+            
         }
     }
     return self;
 }
 
-- (void)popIn:(UIViewController *)viewController
+- (void)popIn
 {
-    if (viewController && self.backgroundWindow) {
+    if (self.backgroundWindow) {
         [self.backgroundWindow makeKeyAndVisible];
-        [UIView beginAnimations:nil context:nil];
-        CGFloat height = self.frame.size.height;
-        self.frame = CGRectMake(10, SCREEN_HEIGHT - height, 300, height);
-        [UIView setAnimationDuration:0.5];
-        [UIView commitAnimations];
+        [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+            CGFloat height = self.frame.size.height;
+            self.frame = CGRectMake(DISPLAY_MARGIN_LEFT, SCREEN_HEIGHT - height, ACTIVITY_WIDTH, height);
+        } completion:^(BOOL finished) {
+            
+        }];
     }
     else {
         NSLog(@"The view has not been init");
@@ -157,9 +154,9 @@
 
  - (void)hide
 {
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
         CGFloat height = self.frame.size.height;
-        self.frame = CGRectMake(10, SCREEN_HEIGHT, 300, height);
+        self.frame = CGRectMake(DISPLAY_MARGIN_LEFT, SCREEN_HEIGHT, ACTIVITY_WIDTH, height);
     } completion:^(BOOL finished) {
         [self.backgroundWindow resignKeyWindow];
         self.backgroundWindow = nil;
@@ -195,6 +192,19 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(ITEM_WIDTH, ITEM_HEIGHT);
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
+}
+
+
+#pragma mark - Cell button action
+- (void)cellTouchAction:(id)sender
+{
+    
 }
 
 

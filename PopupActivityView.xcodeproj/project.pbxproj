@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC0F15EA1A5C0E2F00F920AF /* MyActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0F15E91A5C0E2F00F920AF /* MyActivity.m */; };
 		AC8546FF1A440A8400656164 /* PopupActivityItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8546FE1A440A8400656164 /* PopupActivityItem.m */; };
 		AC8547021A441C6800656164 /* CustomizeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8547011A441C6800656164 /* CustomizeItem.m */; };
 		ACBA2D101A41A48D009AF36A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ACBA2D0F1A41A48D009AF36A /* main.m */; };
@@ -30,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC0F15E81A5C0E2F00F920AF /* MyActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyActivity.h; sourceTree = "<group>"; };
+		AC0F15E91A5C0E2F00F920AF /* MyActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyActivity.m; sourceTree = "<group>"; };
 		AC8546FD1A440A8400656164 /* PopupActivityItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupActivityItem.h; sourceTree = "<group>"; };
 		AC8546FE1A440A8400656164 /* PopupActivityItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupActivityItem.m; sourceTree = "<group>"; };
 		AC8547001A441C6800656164 /* CustomizeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizeItem.h; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 				ACBA2D0D1A41A48D009AF36A /* Supporting Files */,
 				AC8547001A441C6800656164 /* CustomizeItem.h */,
 				AC8547011A441C6800656164 /* CustomizeItem.m */,
+				AC0F15E81A5C0E2F00F920AF /* MyActivity.h */,
+				AC0F15E91A5C0E2F00F920AF /* MyActivity.m */,
 			);
 			path = PopupActivityView;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC0F15EA1A5C0E2F00F920AF /* MyActivity.m in Sources */,
 				AC8546FF1A440A8400656164 /* PopupActivityItem.m in Sources */,
 				ACBA2D161A41A48D009AF36A /* ViewController.m in Sources */,
 				AC8547021A441C6800656164 /* CustomizeItem.m in Sources */,
